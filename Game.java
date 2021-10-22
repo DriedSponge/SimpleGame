@@ -125,7 +125,7 @@ public class Game {
             break;
           default:
             System.out.println(
-                "Please enter \"b\" for betting, \"v\" for viewing your card, or \"c\" to continue to the next player: ");
+                "Please enter \"b\" for betting, \"v\" for viewing your card, \"c\" to continue to the next player, or \"f\" to fold: ");
             break;
         }
       }
