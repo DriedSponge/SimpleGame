@@ -56,13 +56,14 @@ public class Game {
    * @return winner The player who won the game.
    */
   public Player findWinner() {
-    Card high = this.players.get(0).getCard();
-    Player winner = this.players.get(0);
+    // placeholder because player 0 might have folded
+    Card high = new Card(0, Suite.values()[0]);
+    Player winner = new Player("null");
 
-    // Check for high cards
-    for (int i = 1; i < this.players.size(); i++) {
+    // Check for high cards (every player)
+    for (int i = 0; i < this.players.size(); i++) {
       Player player = this.players.get(i);
-      if (player.getCard().getValue() > high.getValue()) {
+      if (player.getCard().getValue() > high.getValue() && player.hasFolded == false) {
         high = player.getCard();
         winner = player;
       }
@@ -104,7 +105,7 @@ public class Game {
       boolean isPlaying = true;
 
       while (isPlaying) {
-        System.out.print("Your options are to (b)et, (v)iew card, or (c)ontinue to the next player: ");
+        System.out.print("Your options are to (b)et, (v)iew card, (c)ontinue to the next player, or (f)old: ");
 
         char response = userIn.next().charAt(0);
         // Switch between various responses.
@@ -119,11 +120,12 @@ public class Game {
             isPlaying = false;
             break;
           case 'f':
-            System.out.print("Folding");
+            player.fold();
+            isPlaying = false;
             break;
           default:
             System.out.println(
-                "Please enter \"b\" for betting, \"v\" for viewing your card, or \"c\" to continue to the next player: ");
+                "Please enter \"b\" for betting, \"v\" for viewing your card, \"c\" to continue to the next player, or \"f\" to fold: ");
             break;
         }
       }
