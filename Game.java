@@ -63,7 +63,7 @@ public class Game {
     // Check for high cards (every player)
     for (int i = 0; i < this.players.size(); i++) {
       Player player = this.players.get(i);
-      if (player.getCard().getValue() > high.getValue() && player.hasFolded == false) {
+      if (player.getCard().getValue() > high.getValue() && !player.hasFolded) {
         high = player.getCard();
         winner = player;
       }
